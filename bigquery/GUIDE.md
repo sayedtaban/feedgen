@@ -28,7 +28,11 @@ Below, you find step-by-step instructions on how to install and apply our BigQue
 
 ## 1. Deploy model & stored procedures
 
-Download [generation.sql](./generation.sql) and [install.sh](./install.sh), execute the latter (in GCP: `bash install.sh`) and input the requested configuration. Alternatively, you can perform the following manually:
+Download [generation.sql](./generation.sql) and [install.sh](./install.sh), execute the latter (in GCP: `bash install.sh`) and input the requested configuration.
+> For a quick test, you can run the provided [example_end2end.sql](./example_end2end.sql) query that uses sample data to create all the required tables and
+> generates titles and descriptions for a few sample products. **After** running install.sh, simply run: `sed "s/\[DATASET\]/$DATASET/g" example_end2end.sql | bq query --use_legacy_sql=false` and wait for the results to appear in a Output table within your BigQuery dataset.
+
+Alternatively, you can perform the following manually:
 1. [Create a dataset](https://cloud.google.com/bigquery/docs/datasets#create-dataset). Use the chosen name instead of `[👉DATASET]` in the code below.
 2. [Create a connection](https://cloud.google.com/bigquery/docs/generate-text-tutorial\#create\_a\_connection). Use the chosen name instead of `[👉CONNECTION]` in the code below.
 4. [Grant](https://console.corp.google.com/iam-admin/iam) *Vertex AI User* to the connection's service account.
@@ -121,7 +125,7 @@ SELECT
   id,
   TO_JSON_STRING((SELECT AS STRUCT * EXCEPT(id) FROM UNNEST([I]))) AS properties
   title,
-  description  
+  description
 FROM `[👉DATASET]`.InputProcessing AS I
 WHERE id IN ('👉1234567', '👉2345678')
 ```
