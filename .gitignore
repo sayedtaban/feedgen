@@ -4,3 +4,5 @@ build/
 .clasp*.json
 *.tgz
 .vscode
+.env
+bigquery/.install.conf
