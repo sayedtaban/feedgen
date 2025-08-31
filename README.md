@@ -1,28 +1,4 @@
-<!--
-Copyright 2023 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-<img align="left" width="150" src="https://services.google.com/fh/files/misc/feedgen_logo.png" alt="feedgen_logo" /><br>
-
-# FeedGen: Optimise Shopping feeds with Generative AI
-
-[![GitHub last commit](https://img.shields.io/github/last-commit/google/feedgen)](https://github.com/google/feedgen/commits)
-[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
-
-**Disclaimer: This is not an official Google product.**
-
-*FeedGen works best for up to 30k items. Looking to scale further? Check out the [Product Studio API](https://developers.google.com/product-studio/docs/onboarding) or consider [processing your feed in BigQuery](bigquery/README.md).*
+# FeedGen
 
 [Overview](#overview) •
 [Get started](#get-started) •
@@ -30,32 +6,6 @@ limitations under the License.
 [How it works](#solution-overview) •
 [How to Contribute](#how-to-contribute) •
 [Community Spotlight](#community-spotlight)
-
-## Updates
-
-* [July 2024]: Added guide to [feed optimisation using BigQuery](bigquery/README.md).
-* [May 2024]: Added support for `gemini-1.5-pro` and `gemini-1.5-flash`
-* [April 2024]
-  * **IMPORTANT**: As of April 9 and as per the updated [Merchant Center product data specification](https://support.google.com/merchants/answer/14784710) please use `structured_title` and `structured_description` when importing FeedGen's output into Merchant Center instead of `title` and `description` respectively. Refer to [these instructions](#using-structured_title-and-structured_description) for details.
-  * Added support for Gemini 1.5 pro (preview): `gemini-1.5-pro-preview-0409`. Please note that the model name may (breakingly) change in the future.
-* [March 2024]
-  * Renamed Gemini models to `gemini-1.0-pro` and `gemini-1.0-pro-vision`
-  * Added support for retrieving JSON web pages
-* [January 2024]: Added support for fetching product web page information and
-  using it for higher quality title and description generation
-* [December 2023]
-  * Added support for Gemini models (`gemini-pro` and `gemini-pro-vision`)
-  * Unified description generation and validation - now handled by a single
-    prompt
-  * Added support for [image understanding](#image-understanding) for higher
-    quality title and description generation (only available with
-    `gemini-pro-vision`)
-  * Added LLM-generated titles which should avoid duplicate values at the
-    possible loss of some attribute information
-* [November 2023]: Added description validation as a separate component
-* [October 2023]: Made title and description generation optional
-* [August 2023]: Added support for [text-bison-32k](https://cloud.google.com/vertex-ai/docs/generative-ai/learn/models#32k_models)
-* [June 2023]: Moved Colab variant to `v1` and switched to JS/TS on `main`
 
 ## Overview
 
@@ -473,31 +423,3 @@ Therefore, users need to perform an additional series of steps *after* exporting
 1. Add the prefix `trained_algorithmic_media:` to all generated content.
    <br/><img src='./img/output_feed_adjustment.png' width="300px" /><br/>
    Refer to the detailed [structured_title](https://support.google.com/merchants/answer/6324415) and [structured_description](https://support.google.com/merchants/answer/6324468) attribute specs for more information.
-
-We will be automating Steps #3 and #4 for you soon - stay tuned!<br/>
-*Credits to [Glen Wilson](https://www.linkedin.com/in/glenmwilson/) and the team at [Solutions-8](https://sol8.com/) for the details and images.*
-
-## How to Contribute
-
-Beyond the information outlined in our [Contributing Guide](CONTRIBUTING.md),
-you would need to follow these additional steps to build FeedGen locally:
-
-1. Make sure your system has an up-to-date installation of
-   [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-1. Navigate to the directory where the FeedGen source code lives.
-1. Run `npm install`.
-1. Run `npx @google/aside init` and click through the prompts.
-   * Input the Apps Script `Script ID` associated with your target Google Sheets
-     spreadsheet. You can find out this value by clicking on
-     `Extensions > Apps Script` in the top navigation menu of your target sheet,
-     then navigating to `Project Settings` (the gear icon) in the resulting
-     [Apps Script](https://script.google.com) view.
-1. Run `npm run deploy` to build, test and deploy (via
-   [clasp](https://github.com/google/clasp)) all code to the target spreadsheet
-   / Apps Script project.
-
-## Community Spotlight
-
-* [Unlocking the Power of AI for Google Shopping Feed Optimization](https://blog.datatovalue.nl/google-shopping-feed-optimization-with-generative-ai-16d0ed996f1f) by Krisztián Korpa.
-* [AI-driven success: how to leverage the potential of Google FeedGen in PPC campaigns](https://www.adchieve.com/en/blog/leverage-potential-google-feed-gen/) by Alex van de Pol.
-* (German) [Generative KI: Home24 verbessert mit FeedGen Reichweite und Performance von Shopping Ads](https://www.thinkwithgoogle.com/intl/de-de/marketing-strategien/automatisierung/home24-feedgen-shopping-ads) - Think with Google.
